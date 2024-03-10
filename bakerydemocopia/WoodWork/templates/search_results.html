@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </head>
+  
+  
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+    
+    <style>
+      p {font-weight:bold; font-size: large;}
+    </style>
+    <div id="sidebar">
+        
+     
+          <style>
+              a {text-decoration: none; color: white}
+          </style>
+  
+         <div class="menu">
+          <ul>
+              <li><b>WoodWorkOrganizer</b></li>
+              <li><a href="/">Home</a></li> 
+              <li><a href="/madera/">Madera</a></li>
+              <li><a href="/cliente/">Cliente</a></li>
+              <li><a href="/empleado/">Empleado</a></li>
+              <li><a href="/presupuesto/">Presupuesto</a></li>
+              <li><a href="/articulo/">Articulos</a></li>
+              <li><a href="/admin/">Admin</a></li>
+
+          </ul>
+  
+          <ul class="right-menu">
+            <li>
+              <form class="search-form" method="get" action="{% url 'search_results' %}">
+                  <input type="text" name="q" placeholder="Buscar...">
+                  <button type="submit">Buscar<i class="fas fa-search"></i></button>
+              </form>
+            </li>
+            <li><b>Hola {{ user.username }}!</b></li>
+            <li><a href="{% url 'logout' %}">Log Out</a></li>
+          </ul>
+              
+  
+        </div>
+  
+<br>
+
+<style>
+  /* Aplica estilos para ajustar el tamaño del enlace */
+  a {
+      display: inline-block; /* Hace que el enlace se comporte como un bloque en línea */
+      border: 1px solid #333; /* Añade un borde al enlace */
+      padding: 10px; /* Añade relleno al enlace para mayor espacio alrededor de la imagen */
+      text-align: center;
+      background-color: #333;
+      max-width: 400px;
+      margin: 0 auto;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+  h2 {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0;
+          color: white;
+          text-decoration:double;
+          font-weight: bolder;
+
+}
+  </style>
+
+
+<body>
+  <h2>Resultados de tu búsqueda: "{{ query }}"</h2>
+
+  <!-- Resultados de Madera -->
+  {% if results.madera_results %}
+      <h2>Maderas</h2>
+      <ul>
+          {% for madera in results.madera_results %}
+              <li>
+                  <a href="/madera/{{ madera.id }}" style="text-decoration:none; color: white;">{{ madera.referencia }} {{ madera.tipos }} {{ madera.modelo }}</a>
+                  <br>
+                  <br>
+                  <br>
+              </li>
+          {% endfor %}
+      
+      </ul>
+  {% endif %}
+  <!-- Resultados de Cliente -->
+  {% if results.cliente_results %}
+      <h2>Clientes</h2>
+      <ul>
+          {% for cliente in results.cliente_results %}
+              <li>
+                  <a href="/cliente/{{ cliente.id }}" style="text-decoration:none; color: white;">{{ cliente.nombre }} {{ cliente.apellidos }}</a>
+                  <br>
+                  <br>
+                  <br>
+              </li>
+          {% endfor %}
+      
+      </ul>
+  {% endif %}
+
+  <!-- Resultados de Empleado -->
+  {% if results.empleado_results %}
+      <h2>Empleados</h2>
+      <ul>
+          {% for empleado in results.empleado_results %}
+              <li>
+                  <a href="/empleado/{{ empleado.id }}" style="text-decoration:none; color: white;">{{ empleado.nombre }} {{ empleado.apellidos }}</a>
+                  <br>
+                  <br>
+                  <br>
+              </li>
+          {% endfor %}
+      </ul>
+  {% endif %}
+
+  <!-- Resultados de Presupuesto -->
+  {% if results.presupuesto_results %}
+      <h2>Presupuestos</h2>
+      <ul>
+          {% for presupuesto in results.presupuesto_results %}
+              <li>
+                  <a href="/presupuesto/{{ presupuesto.id }}" style="text-decoration:none; color: white;">{{ presupuesto.dni_cliente }} {{ presupuesto.fecha_entrega }}</a>
+                  <br>
+                  <br>
+                  <br>
+              </li>
+          {% endfor %}
+      </ul>
+  {% endif %}
+
+  {% if results.articulo_results %}
+  <h2>Presupuestos</h2>
+  <ul>
+      {% for articulo in results.articulo_results %}
+          <li>
+              <a href="/articulo/{{ articulo.id }}" style="text-decoration:none; color: white;">{{ articulo.tipo_art }} {{ articulo.madera_usada.tipos }} {{ articulo.madera_usada.modelo }}</a>
+              <br>
+              <br>
+              <br>
+          </li>
+      {% endfor %}
+  </ul>
+{% endif %}
+  <!-- Mostrar mensaje si no hay resultados en ninguna categoría -->
+  {% if not results.madera_results and not results.cliente_results and not results.empleado_results and not results.presupuesto_results and not articulo_results %}
+      <p>No se encontraron resultados.</p>
+  {% endif %}
+</body>
+</html>
+
+{% endblock %}

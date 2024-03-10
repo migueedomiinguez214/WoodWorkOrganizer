@@ -1,0 +1,3 @@
+Subject: New user registered
+Message: Welcome, user21! You have been added to the bloggers group.
+

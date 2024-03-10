@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+<title>{% block title %}Articulo{% endblock %}</title>
+
+
+{% block content %}
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </head>
+  
+  
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+    
+    <style>
+      p {font-weight:bold; font-size: large; color: white;}
+    </style>
+    <div id="sidebar">
+        
+     
+          <style>
+              a {text-decoration: none; color: white}
+          </style>
+  
+         <div class="menu">
+          <ul>
+              <li><b>WoodWorkOrganizer</b></li>
+              <li><a href="/">Home</a></li> 
+              <li><a href="/madera/">Madera</a></li>
+              <li><a href="/cliente/">Cliente</a></li>
+              <li><a href="/empleado/">Empleado</a></li>
+              <li><a href="/presupuesto/">Presupuesto</a></li>
+              <li><a href="/articulo/">Articulos</a></li>
+              <li><a href="/admin/">Admin</a></li>
+
+          </ul>
+  
+          <ul class="right-menu">
+            <li>
+              <form class="search-form" method="get" action="{% url 'search_results' %}">
+                  <input type="text" name="q" placeholder="Buscar...">
+                  <button type="submit">Buscar<i class="fas fa-search"></i></button>
+              </form>
+            </li>
+            <li><b>Hola {{ user.username }}!</b></li>
+            <li><a href="{% url 'logout' %}">Log Out</a></li>
+          </ul>
+              
+  
+        </div>
+  
+<br>
+
+<style>
+    a {text-decoration: none; color: white}
+    h2 {text-decoration: none; color: white; font-weight: bolder;}
+</style>
+
+<style>
+  /* Aplica estilos para ajustar el tamaño del enlace */
+  a {
+      display: inline-block; /* Hace que el enlace se comporte como un bloque en línea */
+      border: 1px solid #333; /* Añade un borde al enlace */
+      padding: 10px; /* Añade relleno al enlace para mayor espacio alrededor de la imagen */
+      text-align: center;
+      background-color: #333;
+      max-width: 400px;
+      margin: 0 auto;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+  /* Aplica estilos para ajustar el tamaño de la imagen */
+  img {
+      width: 80px; /* Establece el ancho de la imagen en píxeles */
+      height: auto; /* Mantiene la proporción original de la imagen ajustando automáticamente la altura */
+  }
+  
+  .tarjetas {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0;
+      }
+
+  h2 {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0;
+      }
+      .boton {
+      padding: 10px 20px;
+      font-size: 16px;
+      text-decoration: none;
+      background-color: white;
+      color: #333;
+      border: 1px solid white;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+      margin: 0 10px;
+      text-decoration: none;
+    
+    }
+
+  
+</style>
+    <h2>Articulos</h2>
+    <img src="https://cdn-icons-png.flaticon.com/128/2355/2355400.png"> </a>  
+    <a href="{{ request.path }}add" class="boton" >Agregar Nuevo</a>
+    <br>
+    <br>
+    <ul>
+        {% for Articulo in object_list %}
+        <a href="{{ Articulo.id }}/",  style="text-decoration:none", style="text-decoration-color: black;"> <li>{{ Articulo.tipo_art }}  {{ Articulo.madera_usada.tipos }} {{ Articulo.madera_usada.modelo }} </li></a> <br> <br>
+        &nbsp
+        {% endfor %}
+        <br>
+        <br>
+        <br>
+    </ul>
+{% endblock %}

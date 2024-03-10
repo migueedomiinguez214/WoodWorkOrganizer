@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+<title>{% block title %}Maderas{% endblock %}</title>
+
+
+{% block content %}
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </head>
+  
+  
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+    
+    <style>
+      p {font-weight:bold; font-size: large;}
+    </style>
+    <div id="sidebar">
+        
+     
+          <style>
+              a {text-decoration: none; color: white}
+          </style>
+  
+         <div class="menu">
+          <ul>
+              <li><b>WoodWorkOrganizer</b></li>
+              <li><a href="/">Home</a></li> 
+              <li><a href="/madera/">Madera</a></li>
+              <li><a href="/cliente/">Cliente</a></li>
+              <li><a href="/empleado/">Empleado</a></li>
+              <li><a href="/presupuesto/">Presupuesto</a></li>
+              <li><a href="/articulo/">Articulos</a></li>
+              <li><a href="/admin/">Admin</a></li>
+
+          </ul>
+  
+          <ul class="right-menu">
+            <li>
+              <form class="search-form" method="get" action="{% url 'search_results' %}">
+                  <input type="text" name="q" placeholder="Buscar...">
+                  <button type="submit">Buscar<i class="fas fa-search"></i></button>
+              </form>
+            </li>
+            <li><b>Hola {{ user.username }}!</b></li>
+            <li><a href="{% url 'logout' %}">Log Out</a></li>
+          </ul>
+              
+  
+        </div>
+        <style>
+          body {margin: 0; padding: 0; background-color: black;}
+          a {text-decoration: none; color: white; }
+          h2 {text-decoration: none; color: white; font-weight: bolder; justify-content: center; align-items: center;}
+          .container {display: flex; justify-content: center; align-items: center; height: 50vh;
+            border: 1px solid #333; /* Añade un borde al enlace */
+            padding: 400px 100px; /* Añade relleno al enlace para mayor espacio alrededor de la imagen */
+            text-align: center;
+            background-color: #333;
+            max-width: 700px;
+            margin:5vh auto;
+            border-radius: 8px;
+            box-shadow: 10px 20px 150px rgba(0, 0, 0, 0.1);
+            justify-content: center; align-items: center;}
+          form {color: white; text-align: center;}
+          input[type="submit"] {
+              
+              background-color: white; /* Color de fondo */
+              color: #333; /* Color del texto */
+              padding: 10px 20px; /* Espaciado interno del botón */
+              border: none; /* Borde del botón */
+              border-radius: 5px; /* Bordes redondeados */
+              cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+              font-size: 16px; /* Tamaño del texto */
+          }
+      </style>
+
+      
+      <div class="container">
+          <a>
+            <h2>Creando/Editando Presupuesto</h2>
+            <br>
+              <form method="post">{% csrf_token %}
+                  {{ form.as_p }} 
+                  <input type="submit" value="Save">
+              </form>
+          </a>
+      </div>
+      
+{% endblock %}
