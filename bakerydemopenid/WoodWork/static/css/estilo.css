@@ -1,0 +1,97 @@
+.menu {
+    background-color: #333; /* Color de fondo */
+    overflow: hidden;
+}
+
+/* Estilo para la lista no ordenada y los elementos de la lista */
+.menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    float: left;
+}
+
+/* Estilo para los enlaces en la barra de menú */
+.menu a {
+    display: block;
+    color: gray; /* Color de texto */
+    text-align: center;
+    padding: 14px 16px; /* Espaciado */
+    text-decoration: none; /* Quita subrayado de enlaces */
+}
+
+.menu b {
+    display: block;
+    color: white; /* Color de texto */
+    font-weight: bolder;
+    font-size: large;
+    text-align: center;
+    padding: 14px 16px; /* Espaciado */
+    text-decoration: none; /* Quita subrayado de enlaces */
+}
+
+/* Cambia el color del enlace cuando el ratón está sobre él */
+.menu a:hover {
+    background-color: #555;
+    text-decoration: none;
+    color: grey;
+}
+
+.right-menu {
+    float: right;
+    list-style: none;
+    text-decoration: none;
+    color: grey;
+    
+}
+
+.right-menu li {
+    display: inline;
+    margin-right: 20px; /* Añade espacio entre elementos */
+    text-decoration: none;
+    color: grey;
+}
+
+
+/* Barra de busqueda*/
+.search-form {
+    display: flex;
+    align-items: center;
+}
+
+.search-form input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 14px;
+    margin-right: 12px;
+}
+
+.search-form button {
+    background-color: #ccc;
+    color: white;
+    border: white;
+    border-radius: 4px;
+    padding: 8px 10px;
+    cursor: pointer;
+}
+
+/* Cambia el color del botón de búsqueda cuando el ratón está sobre él */
+.search-form button:hover {
+    background-color: #333;
+}
+
+body {
+    background-image: url('https://i.pinimg.com/originals/d5/db/25/d5db25c9e9f083706a7bfebb98239e93.jpg'); /* Reemplaza con la ruta o URL de tu imagen de fondo */
+    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el fondo */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-attachment: fixed; /* Fija la imagen de fondo al desplazarse */
+    
+  }
+
+.enlace {
+    text-decoration: none;
+
+}

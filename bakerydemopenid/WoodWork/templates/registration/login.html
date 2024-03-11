@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <style>
+    body {
+      background-image: url("https://i.pinimg.com/originals/d5/db/25/d5db25c9e9f083706a7bfebb98239e93.jpg");
+      background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el fondo */
+      background-repeat: no-repeat; /* Evita que la imagen se repita */
+      background-attachment: fixed;
+    }
+
+    .login-container {
+      max-width: 400px;
+      margin: 0 auto;
+      margin-top: 50px;
+    }
+
+    .login-form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+      background-color: #8B4513;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #8B4513;
+    }
+
+    a {
+      color: #8B4513;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+  <div class="container login-container">
+    <div class="login-form">
+      <p>INICIO DE SESIÓN.</p>
+      {% if form.errors %}
+        <p>Tu usuario o contraseña no coinciden. Por favor, vuelve a intentarlo.</p>
+      {% endif %}
+
+      {% if next %}
+        {% if user.is_authenticated %}
+          <p>Usuario y contraseña correctos, redirigiendo.</p>
+        {% else %}
+          <p>.</p>
+        {% endif %}
+      {% endif %}
+
+      <form method="post" action="{% url 'login' %}" class="login-form">
+        {% csrf_token %}
+        <div class="form-group">
+          {{ form.username.label_tag }}
+          {{ form.username }}
+        </div>
+        <div class="form-group">
+          {{ form.password.label_tag }}
+          {{ form.password }}
+        </div>
+        
+        <input type="submit" value="Login" class="btn btn-primary">
+        <input type="hidden" name="next" value="{{ next }}">
+      </form>
+
+      {# Assumes you set up the password_reset view in your URLconf #}
+      <p><a href="{% url 'password_reset' %}">Recuperar Contraseña?</a></p>
+    </div>
+  </div>
+{% endblock %}

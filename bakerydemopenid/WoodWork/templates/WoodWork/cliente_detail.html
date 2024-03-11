@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+<title>{% block title %}Clientes{% endblock %}</title>
+
+{% block content %}
+{% load static %}
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+    
+    <style>
+      p {font-weight:bold; font-size: large; color: white;}
+    </style>
+    <div id="sidebar">
+        
+     
+          <style>
+              a {text-decoration: none; color: white}
+
+          </style>
+  
+         <div class="menu">
+          <ul>
+              <li><b>WoodWorkOrganizer</b></li>
+              <li><a href="/">Home</a></li> 
+              <li><a href="/madera/">Madera</a></li>
+              <li><a href="/cliente/">Cliente</a></li>
+              <li><a href="/empleado/">Empleado</a></li>
+              <li><a href="/presupuesto/">Presupuesto</a></li>
+              <li><a href="/articulo/">Articulos</a></li>
+              <li><a href="/admin/">Admin</a></li>
+
+          </ul>
+  
+          <ul class="right-menu">
+            <li>
+              <form class="search-form" method="get" action="{% url 'search_results' %}">
+                  <input type="text" name="q" placeholder="Buscar...">
+                  <button type="submit">Buscar<i class="fas fa-search"></i></button>
+              </form>
+            </li>
+            <li><b>Hola {{ user.username }}!</b></li>
+            <li><a href="{% url 'logout' %}">Log Out</a></li>
+          </ul>
+              
+  
+        </div>
+
+</head>
+
+<BR></BR>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      text-align: center;
+      background-color: #f0f0f0;
+  
+    }
+
+    h1 {
+      text-decoration: none;
+      color: white;
+      font-weight: bolder;
+    }
+
+    h2 {
+      margin: 0;
+      color: white;
+    }
+
+    .contenido-central {
+      text-align: left;
+      color: white;
+      background-color: #333;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: inline-block;
+      max-width: max-content;
+    }
+
+    /* Estilos para el contenedor de los botones */
+    .contenedor-botones {
+      margin-top: 20px;
+    }
+
+    /* Estilos opcionales para hacer que el enlace se vea como un botón */
+    .boton {
+      padding: 10px 20px;
+      font-size: 16px;
+      text-decoration: none;
+      background-color: #8B4513;
+      color: white;
+      border: 1px solid #8B4513;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+      margin: 0 10px;
+    }
+
+    .boton:hover {
+      background-color: #A0522D;
+      text-decoration: none;
+    }
+  </style>
+  <title>Información del Usuario</title>
+</head>
+<body>
+
+  <div class="contenido-central">
+    <h1>{{ object.nombre }} {{ object.apellidos }}</h1>
+    <h2>DNI: {{ object.dni }}</h2>
+    <h2>Dirección: {{ object.direccion }}</h2>
+    <h2>Correo: {{ object.correo }}</h2>
+    <h2>Teléfono: {{ object.telefono }}</h2>
+
+    <div class="contenedor-botones">
+      <a href="{{ request.path }}update" class="boton">Editar</a>
+      <a href="{{ request.path }}delete" class="boton">Borrar</a>
+    </div>
+  </div>
+
+</body>
+</html>
+
+
+{% endblock %}
